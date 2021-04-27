@@ -1,8 +1,8 @@
-import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 // import React from 'react';
 
 const MyFooter = () => (
-    <footer className="pt-4 my-md-5 pt-md-5 border-top fixed-bottom">
+    <footer className="pt-4 my-md-5 pt-md-5 border-top">
         <Container fixed='bottom'>
             <Row>
                 <Col>
