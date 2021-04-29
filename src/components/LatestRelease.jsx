@@ -9,13 +9,13 @@ class LatestRelease extends React.Component {
         return (
             <Container>
                 <CardColumns>
-                    {fantasyBooks.map((fantasyBook)=>(
-                    <Card>
-                        <Card.Img variant="top" src={fantasyBook.img} />
-                        <Card.Body>
-                            <Card.Title>{fantasyBook.title}</Card.Title>
-                        </Card.Body>
-                    </Card>
+                    {fantasyBooks.map((fantasyBook) => (
+                        <Card key={`asin${fantasyBook.asin}`}>
+                            <Card.Img variant="top" src={fantasyBook.img} />
+                            <Card.Body>
+                                <Card.Title>{fantasyBook.title}</Card.Title>
+                            </Card.Body>
+                        </Card>
                     ))}
                 </CardColumns>
             </Container>
