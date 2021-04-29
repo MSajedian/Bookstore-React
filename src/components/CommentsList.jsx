@@ -48,6 +48,7 @@ class CommentsList extends Component {
                     !this.state.isLoading &&
 
                     <Container>
+                        <h2>Comments</h2>
                         {
                             this.state.bookComment.map((Comments) => (
                                 <div key={`id${Comments._id}`} id={`${Comments._id}`}>
