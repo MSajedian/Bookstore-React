@@ -1,7 +1,7 @@
 import { Component } from 'react'
 // import fantasyBooks from '../data/fantasy.json'
-import { Spinner } from 'react-bootstrap'
-import { Container } from 'react-bootstrap'
+import { Container, Button, Spinner } from 'react-bootstrap'
+
 
 
 class CommentsList extends Component {
@@ -37,6 +37,31 @@ class CommentsList extends Component {
         }
     }
 
+    deleteComment = async (e) => {
+        try {
+    
+            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${e.currentTarget.id}`, {
+                method: "DELETE",
+                body: JSON.stringify(this.state.leavedComment),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMGNjMGIxZjBmYjAwMTVkOTE3MDYiLCJpYXQiOjE2MTkwMDQ2MDksImV4cCI6MTYyMDIxNDIwOX0.DGDlgKpWowe1bbzGnpP8h09QTfnZMSrDp93COWwfleU",
+                }
+    
+            })
+            if (response.ok) {
+                alert("Deleted")
+            } else {
+                alert("Not Deleted")
+                this.setState({ isError: true, isLoading: false })
+            }
+        } catch (error) {
+            console.log(error)
+            this.setState({ isError: true, isLoading: false })
+        }
+    }
+
     render() {
         return (
             <>
@@ -54,6 +79,7 @@ class CommentsList extends Component {
                                 <div key={`id${Comments._id}`} id={`${Comments._id}`}>
                                     <div className="commment">{`${Comments.comment}`}</div>
                                     <div className="rate"><b>rate:</b> {`${Comments.rate}`}</div>
+                                    <div className="delete"><Button variant="danger" onClick={(e) => deleteComment(e)}> Delete Comment </Button></div>
                                     <hr />
                                 </div>))}
                     </Container>

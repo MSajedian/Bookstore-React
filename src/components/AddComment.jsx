@@ -1,6 +1,6 @@
 import { Component } from 'react'
 // import fantasyBooks from '../data/fantasy.json'
-import { Form } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 
 class AddComment extends Component {
@@ -8,6 +8,7 @@ class AddComment extends Component {
         isLoading: false,
         isError: false,
         leavedComment: {
+            elementId: this.props.Bookid,
             comment: '',
             rate: 1
         }
@@ -20,13 +21,13 @@ class AddComment extends Component {
                 isLoading: true
             })
 
-            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${this.props.Bookid}`, {
+            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/`, {
                 method: "POST",
                 body: JSON.stringify(this.state.leavedComment),
                 headers: {
                     "Content-Type": "application/json",
                     Authorization:
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMGNjMGIxZjBmYjAwMTVkOTE3MDYiLCJpYXQiOjE2MTkwMDQ2MDksImV4cCI6MTYyMDIxNDIwOX0.DGDlgKpWowe1bbzGnpP8h09QTfnZMSrDp93COWwfleU",
+                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMGNjMGIxZjBmYjAwMTVkOTE3MDYiLCJpYXQiOjE2MTkwMDQ2MDksImV4cCI6MTYyMDIxNDIwOX0.DGDlgKpWowe1bbzGnpP8h09QTfnZMSrDp93COWwfleU",
                 }
 
             })
@@ -59,12 +60,12 @@ class AddComment extends Component {
                          id="Comment"
                          value={this.state.leavedComment.comment}
                          onChange={(e) => this.setState({
-                            reservation: {
-                                ...this.state.reservation,
+                            leavedComment: {
+                                ...this.state.leavedComment,
                                 comment: e.target.value
                             }
                         })}
-                        type="email" placeholder="Comment" />
+                        type="text" placeholder="Comment" />
                     </Form.Group>
                     <Form.Group >
                         <Form.Label>Rate</Form.Label>
@@ -72,8 +73,8 @@ class AddComment extends Component {
                          id="rate"
                          value={this.state.leavedComment.rate}
                          onChange={(e) => this.setState({
-                            reservation: {
-                                ...this.state.reservation,
+                            leavedComment: {
+                                ...this.state.leavedComment,
                                 rate: e.target.value
                             }
                         })}
@@ -85,6 +86,11 @@ class AddComment extends Component {
                             <option>5</option>
                         </Form.Control>
                     </Form.Group>
+                    <Button
+                        variant="info"
+                        type="submit">
+                        Send Comment
+                    </Button>
                 </Form>
             </>
         );
