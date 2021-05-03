@@ -7,10 +7,21 @@ class AddComment extends Component {
     state = {
         isLoading: false,
         isError: false,
+        commentAdded: false,
         leavedComment: {
             elementId: this.props.Bookid,
             comment: '',
             rate: 1
+        },
+    }
+
+    componentDidUpdate = (previousProps, previousState) => {
+        //console.log(Boolean(previousProps), Boolean(previousState))
+        if (previousState.commentAdded !== this.state.commentAdded) {
+            console.log('this.state.commentAdded:', this.state.commentAdded)
+            this.setState({ commentAdded: false })
+        } else {
+            this.props.fetchComments && this.props.fetchComments()
         }
     }
 
@@ -27,11 +38,13 @@ class AddComment extends Component {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMGNjMGIxZjBmYjAwMTVkOTE3MDYiLCJpYXQiOjE2MTkwMDQ2MDksImV4cCI6MTYyMDIxNDIwOX0.DGDlgKpWowe1bbzGnpP8h09QTfnZMSrDp93COWwfleU",
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMGNjMGIxZjBmYjAwMTVkOTE3MDYiLCJpYXQiOjE2MTkwMDQ2MDksImV4cCI6MTYyMDIxNDIwOX0.DGDlgKpWowe1bbzGnpP8h09QTfnZMSrDp93COWwfleU",
                 }
 
             })
             if (response.ok) {
+                this.setState({ commentAdded: true })
+                //this.componentDidUpdate() // NOPE
                 alert("Posted")
                 this.setState({
                     leavedComment: {
@@ -57,28 +70,28 @@ class AddComment extends Component {
                     <Form.Group >
                         <Form.Label>Comment</Form.Label>
                         <Form.Control
-                         id="Comment"
-                         value={this.state.leavedComment.comment}
-                         onChange={(e) => this.setState({
-                            leavedComment: {
-                                ...this.state.leavedComment,
-                                comment: e.target.value
-                            }
-                        })}
-                        type="text" placeholder="Comment" />
+                            id="Comment"
+                            value={this.state.leavedComment.comment}
+                            onChange={(e) => this.setState({
+                                leavedComment: {
+                                    ...this.state.leavedComment,
+                                    comment: e.target.value
+                                }
+                            })}
+                            type="text" placeholder="Comment" />
                     </Form.Group>
                     <Form.Group >
                         <Form.Label>Rate</Form.Label>
-                        <Form.Control 
-                         id="rate"
-                         value={this.state.leavedComment.rate}
-                         onChange={(e) => this.setState({
-                            leavedComment: {
-                                ...this.state.leavedComment,
-                                rate: e.target.value
-                            }
-                        })}
-                        as="select">
+                        <Form.Control
+                            id="rate"
+                            value={this.state.leavedComment.rate}
+                            onChange={(e) => this.setState({
+                                leavedComment: {
+                                    ...this.state.leavedComment,
+                                    rate: e.target.value
+                                }
+                            })}
+                            as="select">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>

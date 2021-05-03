@@ -1,4 +1,4 @@
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Nav } from "react-bootstrap";
 // import React from 'react';
 
 const MyFooter = () => (
@@ -7,60 +7,34 @@ const MyFooter = () => (
             <Row>
                 <Col>
                     <h5>Features</h5>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>Cool stuff</ListGroup.Item>
-                        <ListGroup.Item>Random feature</ListGroup.Item>
-                        <ListGroup.Item>Team feature</ListGroup.Item>
-                        <ListGroup.Item>Stuff for developers</ListGroup.Item>
-                        <ListGroup.Item>Another one</ListGroup.Item>
-                        <ListGroup.Item>Last time</ListGroup.Item>
-                    </ListGroup>
-                    {/* <Button variant="link">Link</Button> */}
-                    {/* 
-                        <ul class="list-unstyled text-small">
-                            <li><a href="#"></a></li>
-                            <li><a href="#">Random feature</a></li>
-                            <li><a href="#">Team feature</a></li>
-                            <li><a href="#">Stuff for developers</a></li>
-                            <li><a href="#">Another one</a></li>
-                            <li><a href="#">Last time</a></li>
-                        </ul>
-                         */}
+                    {/* variant='flush' */}
+                    <Nav defaultActiveKey="/home" className="flex-column">
+                        <Nav.Link href="">Cool stuff</Nav.Link>
+                        <Nav.Link href="">Random feature</Nav.Link>
+                        <Nav.Link href="">Team feature</Nav.Link>
+                        <Nav.Link href=""> Stuff for developers</Nav.Link>
+                        <Nav.Link href=""> Another one</Nav.Link>
+                        <Nav.Link href=""> Last time</Nav.Link>
+                    </Nav>
+                    
                 </Col>
                 <Col>
                     <h5>Resources</h5>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>Resource</ListGroup.Item>
-                        <ListGroup.Item>Resource name</ListGroup.Item>
-                        <ListGroup.Item>Another resource</ListGroup.Item>
-                        <ListGroup.Item>Final resource</ListGroup.Item>
-                    </ListGroup>
-                    {/* 
-                        <ul class="list-unstyled text-small">
-                            <li><a href="#">Resource</a></li>
-                            <li><a href="#">Resource name</a></li>
-                            <li><a href="#">Another resource</a></li>
-                            <li><a href="#">Final resource</a></li>
-                        </ul>
-                         */}
+                    <Nav defaultActiveKey="/home" className="flex-column">
+                        <Nav.Link href="">Resource</Nav.Link>
+                        <Nav.Link href="">Resource name</Nav.Link>
+                        <Nav.Link href="">Another resource</Nav.Link>
+                        <Nav.Link href=""> Final resource</Nav.Link>
+                    </Nav>
                 </Col>
                 <Col>
                     <h5>About</h5>
-                    <ListGroup variant='flush'>
-                    <ListGroup.Item>Team</ListGroup.Item>
-                    <ListGroup.Item>Locations</ListGroup.Item>
-                    <ListGroup.Item>Privacy</ListGroup.Item>
-                    <ListGroup.Item>Terms</ListGroup.Item>
-                    </ListGroup>
-
-                    {/* 
-                        <ul class="list-unstyled text-small">
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Locations</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Terms</a></li>
-                        </ul>
-                         */}
+                    <Nav defaultActiveKey="/home" className="flex-column">
+                        <Nav.Link href="">Team</Nav.Link>
+                        <Nav.Link href="">Locations</Nav.Link>
+                        <Nav.Link href="">Privacy</Nav.Link>
+                        <Nav.Link href=""> Terms</Nav.Link>
+                    </Nav>
                 </Col>
             </Row>
         </Container>

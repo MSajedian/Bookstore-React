@@ -9,6 +9,19 @@ class CommentArea extends Component {
         book: [],
         isLoading: false,
         isError: false,
+        commentUpdated: false,
+        fetchComments: null
+    }
+
+    updateCommentArea = (data) => {
+        this.setState({ commentUpdated: data })
+    }
+    
+    componentDidUpdate = (previousProps, previousState) => {
+        if (previousState.commentUpdated !== this.state.commentUpdated) {
+            console.log('this.state.commentUpdated:', this.state.commentUpdated)
+            this.setState({ commentUpdated: false })
+        }
     }
 
     componentDidMount = async () => {
@@ -52,8 +65,8 @@ class CommentArea extends Component {
                     </Card.Body>
                 </Card>
             ))}
-            <CommentsList Bookid={this.props.Bookid}/>
-            <AddComment Bookid={this.props.Bookid}/>
+            <CommentsList Bookid={this.props.Bookid} setFetchComments={(fetchComments) => this.setState({fetchComments})}/>
+            <AddComment Bookid={this.props.Bookid} fetchComments={this.state.fetchComments}/>
 
         </>);
     }
